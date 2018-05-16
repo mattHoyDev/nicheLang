@@ -1,0 +1,29 @@
+//////////////////////////////////
+// 2. Variables and Collections //
+//////////////////////////////////
+
+// Variables
+//String initialization
+str stringVariable: "Hello"
+
+// Integer initialization
+int intVar1, intVar2: 123, 456
+
+// Float initialization
+float floatVariable: 1.11
+
+// Boolean initialization
+bool booleanVariable: True
+
+// List initialization. Lists are collections of any datatype
+list listVariable: [stringVariable, intVar1, booleanVariable
+
+// Array initialization. Arrays are collections of a single datatype
+arr arrayVariable: int[intVar1, intVar2]
+
+// Dictionary initialization. Dictionaries are a key, value store
+dict dictionaryVar: {
+	"key1": arrayVariable
+	"key2": 1
+	stringVariable: 
+}

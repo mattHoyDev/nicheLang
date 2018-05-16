@@ -1,0 +1,55 @@
+//////////////////////////////////////////
+// 1. Primitive Datatypes and Operators //
+//////////////////////////////////////////
+
+// Numbers
+3 // => 3
+
+// Math
+1 + 1 // => 2
+8 - 1 // => 7
+10 * 2 // => 20
+35 / 5 // => 7.0
+-5.0 / 3 // -> -1.67
+4 % 2 // => 0
+2 ** 3 // => 8
+(1 + 3) * 2 // => 8
+3 > 2 // => True
+3 < 2 // => False
+2 >= 2 // => True
+5 <= 3 // => False
+5 = 3 // => True
+
+
+// Boolean
+True
+False
+True & False // => False
+False | True // => True
+True != False // => True
+
+
+// Strings
+"Strings use double quotes."
+"Hello, " + "world" // => "Hello, world"
+"Strings have indices"[0] // => "S"
+len("Hi") // => 2 
+"{0} can be formatted {1}, aren't {0} impressive?" << arr ["Strings", "in this way"]
+
+
+// Operators
++
+-
+*
+/
+%
+**
+=
+!=
+>
+<
+>=
+<=
+&
+|
+<<

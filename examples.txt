@@ -1,0 +1,64 @@
+Niche Programming Language Syntax examples
+
+//Variables
+str stringVariable: "Hello"
+int intVar1, intVar2: 123, 456
+bool booleanVariable: True
+list listVariable: [stringVariable, intVar1, booleanVariable]
+arr arrayVariable: int[intVar1, intVar2]
+dict dictionaryVar: {
+	"key1": arrayVariable
+	"key2": 1
+	stringVariable: 
+}
+float floatVariable: 1.11
+
+//Keywords
+str, int, bool,
+list, arr, dict,
+float, range, len,
+if, else, for, 
+in, return, import,
+assert, func
+
+
+//flow
+if ( intVar1 = 1 ) (
+	print("intVar1 = 1")
+) else if ( intVar1 = 123 ) (
+	print("intVar1 = 123")
+) else (
+	print("I don't know what intVar1 is.")
+)
+
+for ( int i in len(arrayVariable) ) (
+	print(i)
+)
+
+
+//Functions
+func list sampleFunction1(str inputString, int inputInt) (
+	list output: [inputString, inputInt]
+	return output
+)
+
+
+func bool isEven(int inputInt) (
+	if ( inputInt % 2 = 0 ) (
+		return True
+	) else (
+		return False
+	)
+)
+
+func bool isOdd(int inputInt) (
+	if ( inputInt % 2 != 0 ) (
+		return True
+	) else (
+		return False
+	)
+)
+
+func arr map(func inputFunc, arr inputArr)
+
+
