@@ -6,7 +6,18 @@
 
 int main()
 {
-    std::string src = "func bool isEven((int inputInt) (if (inputInt% 2=0 ) (arr arrayVariable: int[1, 2, 3 ]; map mapVar: { \"key1\": 1, \"key2\": 2 }; string test: \"this is a test string + wow\"; return True)else (return False))";
+    std::string src = R"(
+
+func bool isEven(int inputInt) (
+    if (inputInt% 2=0 ) (
+        arr arrayVariable: int[1, 2, 3 ]; map mapVar: { "key1": 1, "key2": 2 }; string test: "this is a test string + wow"; return True
+    )else (//thisis also a comment
+        return False // this is a comment
+    )
+))";
+
+
+
     std::vector<std::string> tokens;
     std::stringstream spaceCheck(src);
     std::string buffer;
@@ -18,7 +29,7 @@ int main()
         {
             for (const auto match : matcher)
             {
-                if (matcher.prefix() != "")
+                if (matcher.prefix() != "" && matcher.prefix() != "\n" && matcher.prefix() != "\t")
                 {
                     tokens.push_back(matcher.prefix());
                 }
@@ -26,9 +37,20 @@ int main()
             }
             buffer = matcher.suffix().str();
         }
-        if (!buffer.empty() && buffer != " " && buffer != "\n" && buffer != "\t")
+        std::string finalBuffer;
+        if (!buffer.empty())
         {
-            tokens.push_back(buffer);
+            for (char c : buffer)
+            {
+                if (c != ' ' && c != '\n' && c != '\t')
+                {
+                    finalBuffer += c;
+                }
+            }
+            if (!finalBuffer.empty())
+            {
+                tokens.push_back(finalBuffer);
+            }
         }
     }
     for (const auto &token : tokens)
