@@ -7,9 +7,9 @@ bool booleanVariable: True
 list listVariable: [stringVariable, intVar1, booleanVariable]
 arr arrayVariable: int[intVar1, intVar2]
 dict dictionaryVar: {
-	"key1": arrayVariable
-	"key2": 1
-	stringVariable: 
+	"key1": arrayVariable,
+	"key2": 1,
+	stringVariable: "Hi"
 }
 float floatVariable: 1.11
 
@@ -19,7 +19,7 @@ list, arr, dict,
 float, range, len,
 if, else, for, 
 in, return, import,
-assert, func
+assert, func, ind
 
 
 //flow
