@@ -19,7 +19,8 @@ int main()
                 tokens.push_back(buffer.substr(0, openParenPos));
                 tokens.push_back(buffer.substr(openParenPos, 1));
                 tokens.push_back(buffer.substr(openParenPos + 1, (buffer.size() - (openParenPos + 1))));
-            } else
+            }
+            else
             {
                 tokens.emplace_back("(");
                 tokens.push_back(buffer.substr(1, buffer.size() - 1));
@@ -33,7 +34,8 @@ int main()
             {
                 tokens.push_back(buffer.substr(0, closeParenPos));
                 tokens.push_back(buffer.substr(closeParenPos, 1));
-            } else
+            }
+            else
             {
                 tokens.emplace_back(")");
                 tokens.push_back(buffer.substr(1, buffer.size() - 1));
