@@ -6,14 +6,14 @@
 
 int main()
 {
-    std::string src = "func bool isEven((int inputInt) (if (inputInt% 2=0 ) (return True)else (return False))";
+    std::string src = "func bool isEven((int inputInt) (if (inputInt% 2=0 ) (arr arrayVariable: int[1, 2, 3 ]; map mapVar: { \"key1\": 1, \"key2\": 2 }; string test: \"this is a test string + wow\"; return True)else (return False))";
     std::vector<std::string> tokens;
     std::stringstream spaceCheck(src);
     std::string buffer;
     while (std::getline(spaceCheck, buffer, ' '))
     {
         std::smatch matcher;
-        std::regex specialParseChars(R"(\(|\)|\+|-|\*|/|%|\^|>|<|=|&|\||!|:)");
+        std::regex specialParseChars(R"(\(|\)|\+|-|\*|/|%|\^|>|<|=|&|\||!|:|\[|\]|,|;|\{|\}|")");
         while (std::regex_search(buffer, matcher, specialParseChars))
         {
             for (const auto match : matcher)

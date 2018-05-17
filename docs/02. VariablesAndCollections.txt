@@ -1,5 +1,6 @@
 //////////////////////////////////
-// 2. Variables and Collections //
+
+0;95;0c// 2. Variables and Collections //
 //////////////////////////////////
 
 // Variables
@@ -21,8 +22,8 @@ list listVariable: [stringVariable, intVar1, booleanVariable]
 // Array initialization. Arrays are collections of a single datatype
 arr arrayVariable: int[intVar1, intVar2]
 
-// Dictionary initialization. Dictionaries are a key, value store
-dict dictionaryVar: {
+// Map initialization. Maps are a key, value store
+map mapVar: {
 	"key1": arrayVariable,
 	"key2": 1,
 	stringVariable: "Hi"
