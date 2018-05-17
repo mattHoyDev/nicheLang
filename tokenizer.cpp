@@ -27,7 +27,7 @@ int main()
             }
             buffer = matcher.suffix().str();
         }
-        if (buffer != "" && buffer != " " && buffer != "\n" && buffer != "\t")
+        if (!buffer.empty() && buffer != " " && buffer != "\n" && buffer != "\t")
         {
             tokens.push_back(buffer);
         }
