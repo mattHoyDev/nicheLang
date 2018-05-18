@@ -6,7 +6,7 @@ int intVar1, intVar2: 123, 456
 bool booleanVariable: True
 list listVariable: [stringVariable, intVar1, booleanVariable]
 arr arrayVariable: int[intVar1, intVar2]
-dict dictionaryVar: {
+map mapVar: {
 	"key1": arrayVariable,
 	"key2": 1,
 	stringVariable: "Hi"
@@ -15,7 +15,7 @@ float floatVariable: 1.11
 
 //Keywords
 str, int, bool,
-list, arr, dict,
+list, arr, map,
 float, range, len,
 if, else, for, 
 in, return, import,
