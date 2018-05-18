@@ -4,22 +4,11 @@
 #include <iostream>
 #include <regex>
 
-int main()
+
+std::vector<std::string> tokenize(std::string input)
 {
-    std::string src = R"(
-
-func bool isEven(int inputInt) (
-    if (inputInt% 2=0 ) (
-        arr arrayVariable: int[1, 2, 3 ]; map mapVar: { "key1": 1, "key2": 2 }; string test: "this is a test string + wow"; return True
-    )else (//thisis also a comment
-        return False // this is a comment
-    )
-))";
-
-
-
     std::vector<std::string> tokens;
-    std::stringstream spaceCheck(src);
+    std::stringstream spaceCheck(input);
     std::string buffer;
     while (std::getline(spaceCheck, buffer, ' '))
     {
@@ -53,6 +42,26 @@ func bool isEven(int inputInt) (
             }
         }
     }
+    return tokens;
+}
+
+int main()
+{
+//    std::string src = R"(
+//
+//func bool isEven(int inputInt) (
+//    if (inputInt% 2=0 ) (
+//        arr arrayVariable: int[1, 2, 3 ]
+//        map mapVar: { "key1": 1, "key2": 2 }; string test: "this is a test string + wow"
+//        return True
+//    )else (//thisis also a comment
+//        return False // this is a comment
+//    )
+//))";
+
+    std::string src = R"(1 + (2 * (3 + 4)))";
+
+    std::vector<std::string> tokens = tokenize(src);
     for (const auto &token : tokens)
     {
         std::cout << token << std::endl;
