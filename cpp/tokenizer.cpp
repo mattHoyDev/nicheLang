@@ -13,7 +13,7 @@ std::vector<std::string> tokenize(std::string input)
     while (std::getline(spaceCheck, buffer, ' '))
     {
         std::smatch matcher;
-        std::regex specialParseChars(R"(\(|\)|\+|-|\*|/|%|\^|>|<|=|&|\||!|:|\[|\]|,|;|\{|\}|")");
+        std::regex specialParseChars(R"(\(|\)|\+|-|\*|\/|%|\^|>|<|=|&|\||!|:|\[|\]|,|;|\{|\}|")");
         while (std::regex_search(buffer, matcher, specialParseChars))
         {
             for (const auto match : matcher)
