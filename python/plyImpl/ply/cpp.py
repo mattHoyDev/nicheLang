@@ -898,7 +898,7 @@ class Preprocessor(object):
             return None
 
 if __name__ == '__main__':
-    from python import ply as lex
+    from python.plyImpl import ply as lex
 
     lexer = lex.lex()
 
