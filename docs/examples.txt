@@ -6,7 +6,7 @@ int intVar1, intVar2: 123, 456
 bool booleanVariable: True
 list listVariable: [stringVariable, intVar1, booleanVariable]
 arr arrayVariable: int[intVar1, intVar2]
-map mapVariable: {
+map mapVar: {
 	"key1": arrayVariable,
 	"key2": 1,
 	stringVariable: "Hi"
