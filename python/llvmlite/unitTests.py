@@ -1,6 +1,7 @@
 import unittest
 from lexParse import (Lexer, Token, TokenKind, DoubleExprAST, VariableExprAST, BinaryExprAST,
                       CallExprAST, PrototypeAST, FunctionAST, Parser)
+from codegen import (NicheEvaluator)
 
 
 class LexerTests(unittest.TestCase):
@@ -122,6 +123,27 @@ class ParserTests(unittest.TestCase):
                           ['Binop', '+',
                            ['Double', '1'],
                            ['Call', 'bar', [['Variable', 'x']]]]])
+
+
+class CodegenTests(unittest.TestCase):
+    def testNumeric(self):
+        eval = NicheEvaluator()
+        self.assertEqual(eval.evaluate('3'), 3.0)
+        # This should be a double at some point...
+        self.assertEqual(eval.evaluate('3+3*4'), 15)
+
+    def testUseFunction(self):
+        eval = NicheEvaluator()
+        self.assertEqual(eval.evaluate('func adder(x y) x+y'), 0.0)
+        self.assertEqual(eval.evaluate('adder(5, 4) + adder(3, 2)'), 14.0)
+
+    def testUseLibc(self):
+        eval = NicheEvaluator()
+        self.assertEqual(eval.evaluate('import ceil(x)'), 0.0)
+        self.assertEqual(eval.evaluate('ceil(4.5)'), 5.0)
+        self.assertEqual(eval.evaluate('import floor(x)'), 0.0)
+        self.assertEqual(eval.evaluate('func cfadder(x) ceil(x) + floor(x)'), 0.0)
+        self.assertEqual(eval.evaluate('cfadder(3.14)'), 7.0)
 
 
 if __name__ == '__main__':

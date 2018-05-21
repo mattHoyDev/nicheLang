@@ -159,21 +159,36 @@ class PrototypeAST(ASTNode):
         self.name = name
         self.argNames = argNames
 
-    def dum(self, indent=0):
+    def dump(self, indent=0):
         return '{0}{1}[{2}]'.format(
             ' ' * indent, self.__class__.__name__, ', '.join(self.argNames))
 
 
 class FunctionAST(ASTNode):
     def __init__(self, proto, body):
-        self.proto = proto
+        self.proto = proto  # a function has a prototype and a body
         self.body = body
+
+    _anonymous_function_counter = 0
+
+    @classmethod
+    def createAnonymous(cls, expr):
+        """Create an anonymous function to hold an expression."""
+        cls._anonymous_function_counter += 1
+        return cls(
+            PrototypeAST('_anon{0}'.format(cls._anonymous_function_counter),
+                         []),
+            expr)
+
+    def isAnonymous(self):
+        return self.proto.name.startswith('_anon')
 
     def dump(self, indent=0):
         s = '{0}{1}[{2}]\n'.format(
             ' ' * indent, self.__class__.__name__, self.proto.dump())
         s += self.body.dump(indent + 2) + '\n'
         return s
+
 
 
 class ParseError(Exception): pass
@@ -185,8 +200,8 @@ class ParseError(Exception): pass
 
 class Parser(object):
     """
-    After the parser is created, invoke parse_toplevel multiple times to parse
-    Kaleidoscope source into an AST.
+    After the parser is created, invoke parseToplevel multiple times to parse
+    Niche source into an AST.
     """
     def __init__(self):
         self.tokenGenerator = None
@@ -231,7 +246,7 @@ class Parser(object):
 
     def _parseTopLevelExpression(self):
         expr = self._parseExpression()
-        return FunctionAST(PrototypeAST('', []), expr)
+        return FunctionAST.createAnonymous(expr)
 
     def _parsePrototype(self):
         name = self.currentToken.value
@@ -347,6 +362,7 @@ class Parser(object):
             return Parser._precedenceMap[self.currentToken.value]
         except KeyError:
             return -1
+
 
 if __name__ == '__main__':
     p = Parser()
