@@ -2,7 +2,15 @@
 #include <vector>
 #include <sstream>
 #include <iostream>
+#include <iomanip>
 #include <regex>
+#include "NicheParser.h"
+
+
+template<typename T> void printElement(T first, T second, const int& width)
+{
+    std::cout << "| " << std::left << std::setw(width) << std::setfill(' ') << first << "| " << std::left << std::setw(width) << std::setfill(' ') << second << " |" << std::endl;
+}
 
 int main()
 {
@@ -10,52 +18,24 @@ int main()
 
 func bool isEven(int inputInt) (
     if (inputInt% 2=0 ) (
-        arr arrayVariable: int[1, 2, 3 ]; map mapVar: { "key1": 1, "key2": 2 }; string test: "this is a test string + wow"; return True
+        arr arrayVariable: int[1, 2, 3 ]
+        map mapVar: { "key1": 1, "key2": 2 }; string test: "this is a test string + wow"
+        return True
     )else (//thisis also a comment
         return False // this is a comment
     )
 ))";
 
+//    std::string src = R"(1 + (2 * (3 + 4)))";
+    NicheParser nicheParser;
 
-
-    std::vector<std::string> tokens;
-    std::stringstream spaceCheck(src);
-    std::string buffer;
-    while (std::getline(spaceCheck, buffer, ' '))
+    std::vector<std::string> tokens = nicheParser.tokenize(src);
+    std::vector<std::pair<std::string, std::string>> associatedTokens = nicheParser.associate(tokens);
+    printElement("TOKEN", "ABSTRACT TYPE", 15);
+    std::cout << "------------------------------------" << std::endl;
+    for(auto token : associatedTokens)
     {
-        std::smatch matcher;
-        std::regex specialParseChars(R"(\(|\)|\+|-|\*|\/|%|\^|>|<|=|&|\||!|:|\[|\]|,|;|\{|\}|")");
-        while (std::regex_search(buffer, matcher, specialParseChars))
-        {
-            for (const auto match : matcher)
-            {
-                if (matcher.prefix() != "" && matcher.prefix() != "\n" && matcher.prefix() != "\t")
-                {
-                    tokens.push_back(matcher.prefix());
-                }
-                tokens.push_back(match);
-            }
-            buffer = matcher.suffix().str();
-        }
-        std::string finalBuffer;
-        if (!buffer.empty())
-        {
-            for (char c : buffer)
-            {
-                if (c != ' ' && c != '\n' && c != '\t')
-                {
-                    finalBuffer += c;
-                }
-            }
-            if (!finalBuffer.empty())
-            {
-                tokens.push_back(finalBuffer);
-            }
-        }
-    }
-    for (const auto &token : tokens)
-    {
-        std::cout << token << std::endl;
+        printElement(token.first, token.second, 15);
     }
     return 0;
 }
